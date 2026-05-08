@@ -23,6 +23,7 @@ struct BottomNavigationBar: View {
         let isSelected = selectedTab == tab
 
         return Button {
+            ButtonTapFeedback.play()
             selectedTab = tab
         } label: {
             VStack(spacing: 0) {

@@ -66,7 +66,9 @@ struct HomeSecondStateView: View {
 
             field("Riff Name", width: 340, height: 40, x: 15, y: 52, opacity: 0.5, size: 13)
 
-            Button {} label: {
+            Button {
+                ButtonTapFeedback.play()
+            } label: {
                 HStack(spacing: 6) {
                     Image(systemName: "plus")
                     Text("New Riff")
@@ -128,7 +130,9 @@ struct HomeSecondStateView: View {
 
             noteField("Add a note about this riff...", width: 340, height: 70, x: 15, y: 298, opacity: 0.5, size: 13)
 
-            Button {} label: {
+            Button {
+                ButtonTapFeedback.play()
+            } label: {
                 HStack(spacing: 8) {
                     Image(systemName: "square.and.arrow.down")
                         .font(.system(size: 16, weight: .medium))

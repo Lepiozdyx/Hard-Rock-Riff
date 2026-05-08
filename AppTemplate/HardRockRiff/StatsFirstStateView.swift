@@ -35,7 +35,7 @@ struct StatsFirstStateView: View {
                         .frame(width: 148, height: 15)
                         .offset(x: 222, y: 122)
 
-                    Button(action: onBackToHome) {
+                    Button(action: { ButtonTapFeedback.perform(onBackToHome) }) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(Color(hex: "0C0D0D"))
@@ -95,6 +95,7 @@ struct StatsFirstStateView: View {
 
             HStack(spacing: 7.2) {
                 Button {
+                    ButtonTapFeedback.play()
                     shiftMonth(by: -1)
                 } label: {
                     Text("‹")
@@ -110,6 +111,7 @@ struct StatsFirstStateView: View {
                     .frame(width: 244.8, height: 43.4)
 
                 Button {
+                    ButtonTapFeedback.play()
                     shiftMonth(by: 1)
                 } label: {
                     Text("›")

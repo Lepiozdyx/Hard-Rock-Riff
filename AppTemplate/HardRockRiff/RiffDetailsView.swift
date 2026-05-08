@@ -66,7 +66,7 @@ struct RiffDetailsView: View {
                         .foregroundStyle(Color(hex: "E4DBCE").opacity(0.5))
                         .offset(x: 260, y: 147)
 
-                    Button(action: onBack) {
+                    Button(action: { ButtonTapFeedback.perform(onBack) }) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(Color(hex: "0C0D0D"))
@@ -206,7 +206,7 @@ struct RiffDetailsView: View {
     }
 
     private func actionButton(title: String, icon: String? = nil, assetIcon: String? = nil, bg: Color, border: Color, action: @escaping () -> Void = {}) -> some View {
-        Button(action: action) {
+        Button(action: { ButtonTapFeedback.perform(action) }) {
             HStack(spacing: 8) {
                 if let icon {
                     Image(systemName: icon)

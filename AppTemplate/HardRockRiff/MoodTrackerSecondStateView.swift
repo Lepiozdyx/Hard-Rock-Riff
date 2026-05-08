@@ -45,7 +45,9 @@ struct MoodTrackerSecondStateView: View {
                         visualizationCard
                             .offset(x: 13, y: 479)
 
-                        Button {} label: {
+                        Button {
+                            ButtonTapFeedback.play()
+                        } label: {
                             HStack(spacing: 8) {
                                 Image("save_svgrepo.com")
                                     .resizable()
@@ -71,7 +73,9 @@ struct MoodTrackerSecondStateView: View {
                             .opacity(0.75)
                             .offset(x: 122, y: 670)
 
-                        Button {} label: {
+                        Button {
+                            ButtonTapFeedback.play()
+                        } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(Color(hex: "0C0D0D"))

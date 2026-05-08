@@ -142,7 +142,7 @@ struct CreateRiffFirstStateView: View {
             Text("Note").labelStyleBebas(20).offset(x: 15, y: 271)
             riffNoteField.offset(x: 15, y: 298)
 
-            Button(action: saveRiff) {
+            Button(action: { ButtonTapFeedback.perform(saveRiff) }) {
                 HStack(spacing: 8) {
                     Image("save_svgrepo.com")
                         .resizable()
@@ -252,6 +252,7 @@ struct CreateRiffFirstStateView: View {
 
     private var keyField: some View {
         Button {
+            ButtonTapFeedback.play()
             withAnimation(.easeInOut(duration: 0.2)) {
                 isKeyPanelExpanded.toggle()
                 isChordPanelExpanded = false
@@ -289,6 +290,7 @@ struct CreateRiffFirstStateView: View {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 34), spacing: 6)], spacing: 6) {
                 ForEach(["A", "B", "C", "D", "E", "F", "G"], id: \.self) { root in
                     Button(root) {
+                        ButtonTapFeedback.play()
                         selectedKeyRoot = root
                         withAnimation(.easeInOut(duration: 0.2)) { isKeyPanelExpanded = false }
                     }
@@ -315,6 +317,7 @@ struct CreateRiffFirstStateView: View {
 
     private func keyModeChip(_ mode: KeyMode) -> some View {
         Button(mode.rawValue.capitalized) {
+            ButtonTapFeedback.play()
             selectedKeyMode = mode
             withAnimation(.easeInOut(duration: 0.2)) { isKeyPanelExpanded = false }
         }
@@ -331,7 +334,10 @@ struct CreateRiffFirstStateView: View {
 
     private func myRiffsCard(riff: RiffEntry) -> some View {
         ZStack(alignment: .topLeading) {
-            Button(action: { onOpenRiffDetails(riff) }) {
+            Button(action: {
+                ButtonTapFeedback.play()
+                onOpenRiffDetails(riff)
+            }) {
                 ZStack(alignment: .topLeading) {
                     RoundedRectangle(cornerRadius: 10)
                         .fill(Color(hex: "0C0D0D"))
@@ -408,6 +414,7 @@ struct CreateRiffFirstStateView: View {
                         }
                 }
                 Button {
+                    ButtonTapFeedback.play()
                     withAnimation(.easeInOut(duration: 0.2)) {
                         isChordPanelExpanded.toggle()
                         isKeyPanelExpanded = false
@@ -480,6 +487,7 @@ struct CreateRiffFirstStateView: View {
 
     private func pickerChip(_ title: String, action: @escaping () -> Void) -> some View {
         Button(title) {
+            ButtonTapFeedback.play()
             action()
             if chords.count >= 16 {
                 withAnimation(.easeInOut(duration: 0.2)) { isChordPanelExpanded = false }

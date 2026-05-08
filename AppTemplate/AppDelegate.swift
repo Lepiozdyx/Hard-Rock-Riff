@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func onGameStart()
     {
 
-        let contentView = CustomHostingController(rootView: MainApp())
+        let contentView = CustomHostingController(rootView: AppRootView())
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = contentView
 

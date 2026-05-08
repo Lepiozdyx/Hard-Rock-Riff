@@ -63,7 +63,7 @@ struct MoodTrackerThirdStateView: View {
                         visualizationCard
                             .offset(x: 13, y: 479)
 
-                        Button(action: saveMood) {
+                        Button(action: { ButtonTapFeedback.perform(saveMood) }) {
                             HStack(spacing: 8) {
                                 Image("save_svgrepo.com")
                                     .resizable()
@@ -100,7 +100,7 @@ struct MoodTrackerThirdStateView: View {
                                 .offset(x: 13, y: 705)
                         }
 
-                        Button(action: onBackToHome) {
+                        Button(action: { ButtonTapFeedback.perform(onBackToHome) }) {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(Color(hex: "0C0D0D"))
@@ -260,6 +260,7 @@ struct MoodTrackerThirdStateView: View {
 
     private func moodHistoryCard(_ mood: MoodEntry) -> some View {
         return Button {
+            ButtonTapFeedback.play()
             onOpenMoodRecord(mood.createdAt)
         } label: {
             ZStack(alignment: .topLeading) {

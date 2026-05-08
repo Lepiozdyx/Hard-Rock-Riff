@@ -46,7 +46,7 @@ struct CalendarFirstStateView<Accessory: View>: View {
                                 .frame(width: 90, height: 15)
                                 .offset(x: 281, y: 112)
 
-                            Button(action: onBackToHome) {
+                            Button(action: { ButtonTapFeedback.perform(onBackToHome) }) {
                                 navBackButton
                             }
                             .buttonStyle(.soundPlain)
@@ -130,6 +130,7 @@ struct CalendarFirstStateView<Accessory: View>: View {
 
     private var todayButton: some View {
         Button {
+            ButtonTapFeedback.play()
             store.selectedDate = .now
             store.selectedMonth = .now
         } label: {
@@ -162,7 +163,10 @@ struct CalendarFirstStateView<Accessory: View>: View {
                 .overlay(RoundedRectangle(cornerRadius: 21).stroke(Color(hex: "291F51"), lineWidth: 0.9))
                 .frame(width: 370, height: dateCardHeight)
             HStack(spacing: 7.2) {
-                Button("‹") { shiftMonth(by: -1) }
+                Button("‹") {
+                    ButtonTapFeedback.play()
+                    shiftMonth(by: -1)
+                }
                     .font(.system(size: 22, weight: .medium))
                     .foregroundStyle(Color(hex: "6A46F3").opacity(0.5))
                     .frame(width: 43.2, height: 43.2)
@@ -171,7 +175,10 @@ struct CalendarFirstStateView<Accessory: View>: View {
                     .font(.custom("Bebas Neue", size: 25))
                     .foregroundStyle(.white)
                     .frame(width: 244.8, height: 43.4)
-                Button("›") { shiftMonth(by: 1) }
+                Button("›") {
+                    ButtonTapFeedback.play()
+                    shiftMonth(by: 1)
+                }
                     .font(.system(size: 22, weight: .medium))
                     .foregroundStyle(Color(hex: "6A46F3"))
                     .frame(width: 43.2, height: 43.2)
@@ -265,6 +272,7 @@ struct CalendarFirstStateView<Accessory: View>: View {
         let markers = markerKinds(for: cell.date)
         let dotSize: CGFloat = markers.count > 2 ? 5 : 6
         return Button {
+            ButtonTapFeedback.play()
             store.selectedDate = cell.date
             store.selectedMonth = cell.date
         } label: {
